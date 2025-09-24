@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoTAnalyze - Smart Data Collection Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+        }
+
+        .get-started-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .get-started-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            background: white;
+            margin-top: 2rem;
+            border-radius: 20px 20px 0 0;
+            min-height: 100vh;
+            padding: 3rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .feature-content {
+            padding: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .process-section {
+            background: #f8f9fa;
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .projects-section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .project-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .tech-stack {
+            background: #f8f9fa;
+            padding: 3rem 0;
+            margin: 4rem 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .demo-controls {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .control-group {
+            margin-bottom: 1rem;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .control-group input, .control-group select {
+            width: 100%;
+            max-width: 300px;
+            padding: 0.7rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .chart-placeholder {
+            background: #f8f9fa;
+            height: 300px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin: 2rem 0;
+            border: 2px dashed #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .process-steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">IoTAnalyze</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#docs">Documentation</a></li>
+                    <li><a href="#community">Community</a></li>
+                </ul>
+            </nav>
+            <a href="#signup" class="get-started-btn">Get Started Free</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>IoT Data Made Simple</h1>
+            <p>Collect, analyze, and visualize your sensor data in the cloud. Build smarter IoT applications with our powerful analytics platform.</p>
+            <a href="#demo" class="get-started-btn" style="display: inline-block; margin-top: 1rem;">Start Building Now</a>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section id="features">
+                <h2 class="section-title">Use Cases</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-image">🎓</div>
+                        <div class="feature-content">
+                            <h3 class="feature-title">Education & Research</h3>
+                            <p class="feature-description">Perfect for students and educators. Build IoT projects with real-time data collection and analysis capabilities. Integrate with Arduino, Raspberry Pi, and more.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-image">🌱</div>
+                        <div class="feature-content">
+                            <h3 class="feature-title">Environmental Monitoring</h3>
+                            <p class="feature-description">Monitor air quality, weather conditions, and environmental parameters. Build early warning systems and track pollution levels in real-time.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-image">⚡</div>
+                        <div class="feature-content">
+                            <h3 class="feature-title">Energy Management</h3>
+                            <p class="feature-description">Track energy consumption, optimize usage patterns, and build smart grid applications. Monitor solar panels and energy storage systems.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-image">🚜</div>
+                        <div class="feature-content">
+                            <h3 class="feature-title">Smart Agriculture</h3>
+                            <p class="feature-description">Optimize crop yields with precision farming. Monitor soil moisture, temperature, and automate irrigation systems based on real-time data.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="process-section">
+                <div class="container">
+                    <h2 class="section-title">How It Works</h2>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-icon">📡</div>
+                            <h3 class="step-title">Collect</h3>
+                            <p>Send sensor data from your devices to our secure cloud platform</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-icon">📊</div>
+                            <h3 class="step-title">Analyze</h3>
+                            <p>Process and analyze your data with built-in analytics tools</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-icon">⚡</div>
+                            <h3 class="step-title">Act</h3>
+                            <p>Trigger actions and alerts based on your data insights</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="demo" class="demo-controls">
+                <h2 class="section-title">Live Demo - Channel Configuration</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+                    <div>
+                        <div class="control-group">
+                            <label for="channelName">Channel Name:</label>
+                            <input type="text" id="channelName" placeholder="My Weather Station" value="Arduino Sensor Hub">
+                        </div>
+                        <div class="control-group">
+                            <label for="field1">Field 1 (Temperature):</label>
+                            <input type="text" id="field1" placeholder="Temperature °C" value="Temperature">
+                        </div>
+                        <div class="control-group">
+                            <label for="field2">Field 2 (Humidity):</label>
+                            <input type="text" id="field2" placeholder="Humidity %" value="Humidity">
+                        </div>
+                        <div class="control-group">
+                            <label for="updateInterval">Update Interval:</label>
+                            <select id="updateInterval">
+                                <option value="15">15 seconds</option>
+                                <option value="30" selected>30 seconds</option>
+                                <option value="60">1 minute</option>
+                                <option value="300">5 minutes</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="updateChannel()">Update Channel</button>
+                        <button class="btn" onclick="generateAPIKey()">Generate API Key</button>
+                    </div>
+                    <div>
+                        <h4>Sample Arduino Code:</h4>
+                        <div style="background: #2d3748; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem; overflow-x: auto;">
+#include &lt;WiFi.h&gt;<br>
+#include &lt;HTTPClient.h&gt;<br><br>
+String apiKey = "YOUR_API_KEY";<br>
+const char* server = "iotanalyze.com";<br><br>
+void sendData(float temp, float humidity) {<br>
+&nbsp;&nbsp;HTTPClient http;<br>
+&nbsp;&nbsp;String url = "/update?api_key=" + apiKey;<br>
+&nbsp;&nbsp;url += "&field1=" + String(temp);<br>
+&nbsp;&nbsp;url += "&field2=" + String(humidity);<br>
+&nbsp;&nbsp;http.begin(server + url);<br>
+&nbsp;&nbsp;http.GET();<br>
+}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-placeholder">
+                    📈 Real-time Data Visualization Will Appear Here
+                    <br><small style="margin-top: 10px; display: block;">Connect your Arduino to see live sensor data</small>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3 class="project-title">Smart Home Energy Monitor</h3>
+                        <p class="project-description">Real-time monitoring of household energy consumption using current sensors and ESP32. Tracks usage patterns and identifies energy-saving opportunities.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3 class="project-title">Agricultural Soil Monitor</h3>
+                        <p class="project-description">Wireless soil moisture and pH monitoring system for precision farming. Automated alerts when irrigation is needed.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3 class="project-title">Air Quality Station</h3>
+                        <p class="project-description">Multi-sensor air quality monitoring with PM2.5, CO2, and temperature sensors. Provides health recommendations based on air quality index.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3 class="project-title">Smart Parking System</h3>
+                        <p class="project-description">IoT-based parking space detection using ultrasonic sensors. Real-time availability tracking for urban parking management.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tech-stack">
+                <div class="container">
+                    <h2 class="section-title">Compatible Platforms</h2>
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <strong>Arduino</strong><br>
+                            <small>All variants</small>
+                        </div>
+                        <div class="tech-item">
+                            <strong>ESP32/ESP8266</strong><br>
+                            <small>WiFi enabled</small>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Raspberry Pi</strong><br>
+                            <small>All models</small>
+                        </div>
+                        <div class="tech-item">
+                            <strong>NodeMCU</strong><br>
+                            <small>Easy integration</small>
+                        </div>
+                        <div class="tech-item">
+                            <strong>LoRaWAN</strong><br>
+                            <small>Long range</small>
+                        </div>
+                        <div class="tech-item">
+                            <strong>MATLAB</strong><br>
+                            <small>Analysis tools</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 IoTAnalyze. Built for IoT enthusiasts, by IoT enthusiasts.</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">Connect your sensors • Visualize your data • Build the future</p>
+        </div>
+    </footer>
+
+    <script>
+        function updateChannel() {
+            const channelName = document.getElementById('channelName').value;
+            const field1 = document.getElementById('field1').value;
+            const field2 = document.getElementById('field2').value;
+            const interval = document.getElementById('updateInterval').value;
+            
+            alert(`Channel Updated!\n\nName: ${channelName}\nField 1: ${field1}\nField 2: ${field2}\nUpdate Interval: ${interval} seconds`);
+        }
+
+        function generateAPIKey() {
+            const apiKey = 'IOT_' + Math.random().toString(36).substring(2, 15).toUpperCase();
+            alert(`New API Key Generated:\n\n${apiKey}\n\nUse this key in your Arduino code to send data to your channel.`);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive demo functionality
+        let demoInterval;
+        function startDemo() {
+            // Simulate real-time data updates
+            const chartPlaceholder = document.querySelector('.chart-placeholder');
+            let dataPoints = 0;
+            
+            demoInterval = setInterval(() => {
+                dataPoints++;
+                const temperature = (20 + Math.random() * 10).toFixed(1);
+                const humidity = (40 + Math.random() * 30).toFixed(1);
+                
+                chartPlaceholder.innerHTML = `
+                    <div>
+                        <h3>Live Data Stream (Point ${dataPoints})</h3>
+                        <p style="font-size: 1.2rem; margin: 1rem 0;">
+                            🌡️ Temperature: ${temperature}°C<br>
+                            💧 Humidity: ${humidity}%<br>
+                            📅 ${new Date().toLocaleTimeString()}
+                        </p>
+                        <small>Demo mode - Connect real sensors for actual data</small>
+                    </div>
+                `;
+                
+                if (dataPoints >= 10) {
+                    clearInterval(demoInterval);
+                    chartPlaceholder.innerHTML = `
+                        📈 Demo Complete - Real sensors will provide continuous data
+                        <br><small style="margin-top: 10px; display: block;">Connect your Arduino to see live sensor data</small>
+                    `;
+                }
+            }, 2000);
+        }
+
+        // Start demo when page loads
+        setTimeout(startDemo, 3000);
+    </script>
+</body>
+</html>
